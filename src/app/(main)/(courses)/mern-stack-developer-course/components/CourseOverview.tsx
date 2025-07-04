@@ -105,8 +105,8 @@ const CourseOverview = () => {
         </div>
 
         {/* Learning Path & Course Info */}
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Learning Path */}
+        {/* <div className="grid lg:grid-cols-2 gap-12 items-start">
+        
           <div>
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">
               What You&apos;ll Learn
@@ -125,7 +125,6 @@ const CourseOverview = () => {
             </div>
           </div>
 
-          {/* Course Info Card */}
           <Card className="bg-gradient-to-br from-blue-600 to-green-600 text-white border-0">
             <CardContent className="p-8">
               <h3 className="text-2xl font-bold mb-6">Course Highlights</h3>
@@ -172,7 +171,7 @@ const CourseOverview = () => {
               </div>
             </CardContent>
           </Card>
-        </div>
+        </div> */}
       </div>
     </section>
   );
