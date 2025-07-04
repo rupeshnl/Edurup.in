@@ -1,30 +1,60 @@
 import React from "react";
-import Banner from "./components/Banner";
-import CourseInfo from "./components/CourseInfo";
-import Company from "./components/Company";
+import HeroSection from "./components/HeroSection";
+import CompanyLogos from "./components/CompanyLogos";
 import CourseOverview from "./components/CourseOverview";
-import CareerSteps from "./components/CareerSteps";
-import SkillsAndTools from "./components/SkillsAndTools";
-import Projects from "./components/Projects";
-import JobRoles from "./components/JobRoles";
-import DoubtResolution from "./components/DoubtResolution";
-import ReadMore from "./components/ReadMore";
-import Fee from "./components/Fee";
+import Mentors from "./components/Mentors";
+import CourseCurriculum from "./components/CourseCurriculum";
+import SkillsSection from "./components/SkillsSection";
+import ToolsSection from "./components/ToolsSection";
+import ProjectsSection from "./components/ProjectsSection";
+import PlacementSupport from "./components/PlacementSupport";
+import Testimonials from "./components/Testimonials";
+import FeeSection from "./components/FeeSection";
+import FAQ from "./components/FAQ";
+import CallToAction from "./components/CallToAction";
+
 const page = () => {
   return (
     <>
-      <div className="min-h-full flex flex-col">
-        <Banner />
-        <CourseInfo />
-        <Company />
+      <div className="min-h-full">
+        {/* Header Section Course intro with form */}
+        <HeroSection />
+
+        {/* Companies hire Logos */}
+        <CompanyLogos />
+
+        {/* Course Overview */}
         <CourseOverview />
-        <CareerSteps />
-        <SkillsAndTools />
-        <Projects />
-        <JobRoles />
-        <DoubtResolution />
-        <ReadMore />
-        <Fee />
+
+        {/* Mentors */}
+        <Mentors />
+
+        {/* Course Curriculum / Detailing */}
+        <CourseCurriculum />
+
+        {/* Skills you learn */}
+        <SkillsSection />
+
+        {/* Tools */}
+        <ToolsSection />
+
+        {/* Projects */}
+        <ProjectsSection />
+
+        {/* Placement Support */}
+        <PlacementSupport />
+
+        {/* Testimonials */}
+        <Testimonials />
+
+        {/* Fee */}
+        <FeeSection />
+
+        {/* FAQ */}
+        <FAQ />
+
+        {/* Form / Call to action button */}
+        <CallToAction />
       </div>
     </>
   );
