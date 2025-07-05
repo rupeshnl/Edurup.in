@@ -142,7 +142,7 @@ const HeroSection = () => {
             </div>
 
             {/* Features */}
-            <div className="space-y-3">
+            {/* <div className="space-y-3">
               {[
                 "Live Interactive Classes",
                 "Real-world Projects",
@@ -157,7 +157,7 @@ const HeroSection = () => {
                   </span>
                 </div>
               ))}
-            </div>
+            </div> */}
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Button

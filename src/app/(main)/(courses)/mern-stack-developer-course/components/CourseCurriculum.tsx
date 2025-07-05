@@ -96,6 +96,19 @@ const CourseCurriculum = () => {
     },
   ];
 
+  const learningPath = [
+    "JavaScript Fundamentals & ES6+",
+    "React.js with Hooks & Context",
+    "State Management with Redux",
+    "Node.js & Express.js Backend",
+    "MongoDB Database Design",
+    "RESTful API Development",
+    "Authentication & Authorization",
+    "Real-world Project Building",
+    "Deployment & DevOps",
+    "Interview Preparation",
+  ];
+
   const totalStats = curriculum.reduce(
     (acc, module) => ({
       lessons: acc.lessons + module.lessons,
@@ -154,64 +167,113 @@ const CourseCurriculum = () => {
         </div>
 
         {/* Curriculum Accordion */}
-        <Card className="bg-white dark:bg-gray-900 border-0 shadow-xl">
-          <CardContent className="p-8">
-            <Accordion type="single" collapsible className="w-full">
-              {curriculum.map((module, index) => (
-                <AccordionItem key={index} value={`module-${index}`}>
-                  <AccordionTrigger className="text-left hover:no-underline">
-                    <div className="flex items-center justify-between w-full pr-4">
-                      <div className="flex items-center space-x-4">
-                        <div className="flex items-center justify-center w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 text-white rounded-full font-bold">
-                          {index + 1}
-                        </div>
-                        <div>
-                          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                            {module.module}
-                          </h3>
-                          <div className="flex items-center space-x-4 text-sm text-gray-600 dark:text-gray-400 mt-1">
-                            <div className="flex items-center space-x-1">
-                              <Clock className="w-4 h-4" />
-                              <span>{module.duration}</span>
-                            </div>
-                            <div className="flex items-center space-x-1">
-                              <PlayCircle className="w-4 h-4" />
-                              <span>{module.lessons} lessons</span>
-                            </div>
-                            <div className="flex items-center space-x-1">
-                              <FileText className="w-4 h-4" />
-                              <span>{module.projects} projects</span>
+        <div className="w-full flex justify-between items-start gap-3">
+          <Card className="bg-white dark:bg-gray-900 border-0 shadow-xl flex-1">
+            <CardContent className="p-8">
+              <Accordion type="single" collapsible className="w-full">
+                {curriculum.map((module, index) => (
+                  <AccordionItem key={index} value={`module-${index}`}>
+                    <AccordionTrigger className="text-left hover:no-underline">
+                      <div className="flex items-center justify-between w-full pr-4">
+                        <div className="flex items-center space-x-4">
+                          <div className="flex items-center justify-center w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 text-white rounded-full font-bold">
+                            {index + 1}
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                              {module.module}
+                            </h3>
+                            <div className="flex items-center space-x-4 text-sm text-gray-600 dark:text-gray-400 mt-1">
+                              <div className="flex items-center space-x-1">
+                                <Clock className="w-4 h-4" />
+                                <span>{module.duration}</span>
+                              </div>
+                              <div className="flex items-center space-x-1">
+                                <PlayCircle className="w-4 h-4" />
+                                <span>{module.lessons} lessons</span>
+                              </div>
+                              <div className="flex items-center space-x-1">
+                                <FileText className="w-4 h-4" />
+                                <span>{module.projects} projects</span>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="pt-4">
-                    <div className="pl-14">
-                      <h4 className="font-semibold text-gray-900 dark:text-white mb-3">
-                        Topics Covered:
-                      </h4>
-                      <div className="space-y-2">
-                        {module.topics.map((topic, topicIndex) => (
-                          <div
-                            key={topicIndex}
-                            className="flex items-start space-x-3"
-                          >
-                            <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                            <span className="text-gray-700 dark:text-gray-300">
-                              {topic}
-                            </span>
-                          </div>
-                        ))}
+                    </AccordionTrigger>
+                    <AccordionContent className="pt-4">
+                      <div className="pl-14">
+                        <h4 className="font-semibold text-gray-900 dark:text-white mb-3">
+                          Topics Covered:
+                        </h4>
+                        <div className="space-y-2">
+                          {module.topics.map((topic, topicIndex) => (
+                            <div
+                              key={topicIndex}
+                              className="flex items-start space-x-3"
+                            >
+                              <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
+                              <span className="text-gray-700 dark:text-gray-300">
+                                {topic}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </CardContent>
-        </Card>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-gradient-to-br from-blue-600 to-green-600 text-white border-0">
+            <CardContent className="p-8">
+              <h3 className="text-2xl font-bold mb-6">Course Highlights</h3>
+              <div className="space-y-4">
+                <div className="flex justify-between items-center">
+                  <span>Duration</span>
+                  <span className="font-semibold">32 Weeks</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span>Format</span>
+                  <span className="font-semibold">Live + Recorded</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span>Projects</span>
+                  <span className="font-semibold">8+ Real-world</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span>Mentorship</span>
+                  <span className="font-semibold">1:1 Support</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span>Placement</span>
+                  <span className="font-semibold">Guaranteed</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span>Certificate</span>
+                  <span className="font-semibold">Industry Recognized</span>
+                </div>
+              </div>
+
+              <div className="mt-8 p-4 bg-white/10 rounded-lg">
+                <div className="flex items-center space-x-2 mb-2">
+                  <span className="text-sm">Course Rating</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="flex text-yellow-300">
+                    {"★★★★★".split("").map((star, i) => (
+                      <span key={i}>{star}</span>
+                    ))}
+                  </div>
+                  <span className="font-bold">4.8/5</span>
+                  <span className="text-sm opacity-80">(2,450 reviews)</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
 
         {/* Additional Features */}
         <div className="grid md:grid-cols-2 gap-8 mt-16">

@@ -68,29 +68,6 @@ const PlacementSupport = () => {
     },
   ];
 
-  const placementStats = [
-    {
-      value: "95%",
-      label: "Placement Rate",
-      icon: <TrendingUp className="w-6 h-6 text-green-600" />,
-    },
-    {
-      value: "₹8.5L",
-      label: "Average Package",
-      icon: <DollarSign className="w-6 h-6 text-blue-600" />,
-    },
-    {
-      value: "500+",
-      label: "Hiring Partners",
-      icon: <Briefcase className="w-6 h-6 text-purple-600" />,
-    },
-    {
-      value: "5000+",
-      label: "Students Placed",
-      icon: <Users className="w-6 h-6 text-orange-600" />,
-    },
-  ];
-
   const hiringPartners = [
     { name: "Amazon", logo: "/amazon.png" },
     { name: "Netflix", logo: "/netflix.png" },
@@ -143,26 +120,6 @@ const PlacementSupport = () => {
             Comprehensive placement assistance to help you transition from
             student to employed developer
           </p>
-        </div>
-
-        {/* Placement Stats */}
-        <div className="grid md:grid-cols-4 gap-8 mb-16">
-          {placementStats.map((stat, index) => (
-            <Card
-              key={index}
-              className="text-center p-6 border-0 shadow-xl bg-white dark:bg-gray-900 hover:shadow-2xl transition-shadow duration-300"
-            >
-              <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-100 to-green-100 dark:from-blue-900/20 dark:to-green-800/20 rounded-full mx-auto mb-4">
-                {stat.icon}
-              </div>
-              <div className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-                {stat.value}
-              </div>
-              <div className="text-gray-600 dark:text-gray-400">
-                {stat.label}
-              </div>
-            </Card>
-          ))}
         </div>
 
         {/* Placement Process */}

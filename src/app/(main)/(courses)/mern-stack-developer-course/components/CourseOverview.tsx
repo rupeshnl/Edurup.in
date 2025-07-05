@@ -39,19 +39,6 @@ const CourseOverview = () => {
     },
   ];
 
-  const learningPath = [
-    "JavaScript Fundamentals & ES6+",
-    "React.js with Hooks & Context",
-    "State Management with Redux",
-    "Node.js & Express.js Backend",
-    "MongoDB Database Design",
-    "RESTful API Development",
-    "Authentication & Authorization",
-    "Real-world Project Building",
-    "Deployment & DevOps",
-    "Interview Preparation",
-  ];
-
   return (
     <section className="py-20 bg-gray-50 dark:bg-gray-800">
       <div className="container mx-auto px-4">
