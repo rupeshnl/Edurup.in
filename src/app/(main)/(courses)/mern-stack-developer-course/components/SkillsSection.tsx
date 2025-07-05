@@ -1,35 +1,34 @@
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
 import Image from "next/image";
 
 const SkillsSection = () => {
   const frontendSkills = [
-    { name: "HTML5", level: 95, icon: "/Skills/css.png" },
-    { name: "CSS3 & Sass", level: 90, icon: "/Skills/css.png" },
-    { name: "JavaScript ES6+", level: 95, icon: "/Skills/js.png" },
-    { name: "React.js", level: 90, icon: "/Skills/illustration.png" },
-    { name: "Redux", level: 85, icon: "/Skills/illustration.png" },
-    { name: "TypeScript", level: 80, icon: "/Skills/js.png" },
+    { name: "HTML5", icon: "/Skills/css.png" },
+    { name: "CSS3 & Sass", icon: "/Skills/css.png" },
+    { name: "JavaScript ES6+", icon: "/Skills/js.png" },
+    { name: "React.js", icon: "/Skills/illustration.png" },
+    { name: "Redux", icon: "/Skills/illustration.png" },
+    { name: "TypeScript", icon: "/Skills/js.png" },
   ];
 
   const backendSkills = [
-    { name: "Node.js", level: 90, icon: "/Skills/node.png" },
-    { name: "Express.js", level: 88, icon: "/Skills/node.png" },
-    { name: "MongoDB", level: 85, icon: "/Skills/illustration.png" },
-    { name: "Mongoose ODM", level: 82, icon: "/Skills/illustration.png" },
-    { name: "RESTful APIs", level: 90, icon: "/Skills/illustration.png" },
-    { name: "GraphQL", level: 75, icon: "/Skills/illustration.png" },
+    { name: "Node.js", icon: "/Skills/node.png" },
+    { name: "Express.js", icon: "/Skills/node.png" },
+    { name: "MongoDB", icon: "/Skills/illustration.png" },
+    { name: "Mongoose ODM", icon: "/Skills/illustration.png" },
+    { name: "RESTful APIs", icon: "/Skills/illustration.png" },
+    { name: "GraphQL", icon: "/Skills/illustration.png" },
   ];
 
-  const devOpsSkills = [
-    { name: "Git & GitHub", level: 90 },
-    { name: "Docker", level: 75 },
-    { name: "AWS", level: 70 },
-    { name: "Heroku", level: 80 },
-    { name: "CI/CD", level: 70 },
-    { name: "Testing", level: 85 },
+  const toolsSkills = [
+    "Git & GitHub",
+    "Docker",
+    "VS Code",
+    "Postman",
+    "npm/yarn",
+    "Chrome DevTools",
   ];
 
   const softSkills = [
@@ -37,10 +36,6 @@ const SkillsSection = () => {
     "Team Collaboration",
     "Code Review",
     "Project Management",
-    "Communication",
-    "Continuous Learning",
-    "Debugging",
-    "Performance Optimization",
   ];
 
   return (
@@ -73,29 +68,22 @@ const SkillsSection = () => {
                 </div>
                 Frontend Development
               </h3>
-              <div className="space-y-6">
+              <div className="grid grid-cols-2 gap-4">
                 {frontendSkills.map((skill, index) => (
-                  <div key={index} className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-3">
-                        {skill.icon && (
-                          <Image
-                            src={skill.icon}
-                            alt={skill.name}
-                            width={24}
-                            height={24}
-                            className="w-6 h-6"
-                          />
-                        )}
-                        <span className="font-medium text-gray-900 dark:text-white">
-                          {skill.name}
-                        </span>
-                      </div>
-                      <span className="text-sm text-gray-600 dark:text-gray-400">
-                        {skill.level}%
-                      </span>
-                    </div>
-                    <Progress value={skill.level} className="h-2" />
+                  <div
+                    key={index}
+                    className="flex items-center space-x-3 p-3 bg-white dark:bg-gray-800 rounded-lg"
+                  >
+                    <Image
+                      src={skill.icon}
+                      alt={skill.name}
+                      width={24}
+                      height={24}
+                      className="w-6 h-6"
+                    />
+                    <span className="font-medium text-gray-900 dark:text-white">
+                      {skill.name}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -111,27 +99,22 @@ const SkillsSection = () => {
                 </div>
                 Backend Development
               </h3>
-              <div className="space-y-6">
+              <div className="grid grid-cols-2 gap-4">
                 {backendSkills.map((skill, index) => (
-                  <div key={index} className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-3">
-                        <Image
-                          src={skill.icon}
-                          alt={skill.name}
-                          width={24}
-                          height={24}
-                          className="w-6 h-6"
-                        />
-                        <span className="font-medium text-gray-900 dark:text-white">
-                          {skill.name}
-                        </span>
-                      </div>
-                      <span className="text-sm text-gray-600 dark:text-gray-400">
-                        {skill.level}%
-                      </span>
-                    </div>
-                    <Progress value={skill.level} className="h-2" />
+                  <div
+                    key={index}
+                    className="flex items-center space-x-3 p-3 bg-white dark:bg-gray-800 rounded-lg"
+                  >
+                    <Image
+                      src={skill.icon}
+                      alt={skill.name}
+                      width={24}
+                      height={24}
+                      className="w-6 h-6"
+                    />
+                    <span className="font-medium text-gray-900 dark:text-white">
+                      {skill.name}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -139,27 +122,24 @@ const SkillsSection = () => {
           </Card>
         </div>
 
-        {/* DevOps & Deployment Skills */}
+        {/* Tools & Development */}
         <Card className="border-0 shadow-xl bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 mb-16">
           <CardContent className="p-8">
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
               <div className="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center mr-3">
-                <span className="text-white font-bold">D</span>
+                <span className="text-white font-bold">T</span>
               </div>
-              DevOps & Deployment
+              Tools & Development
             </h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {devOpsSkills.map((skill, index) => (
-                <div key={index} className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span className="font-medium text-gray-900 dark:text-white">
-                      {skill.name}
-                    </span>
-                    <span className="text-sm text-gray-600 dark:text-gray-400">
-                      {skill.level}%
-                    </span>
-                  </div>
-                  <Progress value={skill.level} className="h-2" />
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {toolsSkills.map((skill, index) => (
+                <div
+                  key={index}
+                  className="bg-white dark:bg-gray-800 rounded-lg p-4 text-center"
+                >
+                  <span className="font-medium text-gray-900 dark:text-white">
+                    {skill}
+                  </span>
                 </div>
               ))}
             </div>
@@ -192,7 +172,7 @@ const SkillsSection = () => {
 
         {/* Skills Summary */}
         <div className="text-center mt-16">
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="text-3xl font-bold text-blue-600 mb-2">15+</div>
               <div className="text-gray-600 dark:text-gray-400">
@@ -200,20 +180,14 @@ const SkillsSection = () => {
               </div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-green-600 mb-2">50+</div>
-              <div className="text-gray-600 dark:text-gray-400">
-                Coding Hours
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-purple-600 mb-2">8+</div>
+              <div className="text-3xl font-bold text-green-600 mb-2">8+</div>
               <div className="text-gray-600 dark:text-gray-400">Projects</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-orange-600 mb-2">
-                100%
+              <div className="text-3xl font-bold text-purple-600 mb-2">
+                Career Ready
               </div>
-              <div className="text-gray-600 dark:text-gray-400">Job Ready</div>
+              <div className="text-gray-600 dark:text-gray-400">Skills</div>
             </div>
           </div>
         </div>
