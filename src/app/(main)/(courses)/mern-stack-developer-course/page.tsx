@@ -36,7 +36,7 @@ const page = () => {
         <SkillsSection />
 
         {/* Tools */}
-        <ToolsSection />
+        {/* <ToolsSection /> */}
 
         {/* Projects */}
         <ProjectsSection />
