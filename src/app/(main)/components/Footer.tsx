@@ -12,9 +12,7 @@ import {
   Mail,
   Phone,
   Clock,
-  Award,
   Users,
-  BookOpen,
   Globe,
   Shield,
   Star,
@@ -264,21 +262,6 @@ const Footer = () => {
                   </li>
                 ))}
               </ul>
-            </div>
-          ))}
-        </div>
-
-        {/* Certifications */}
-        <div className="mt-16 pt-8 border-t border-muted/20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-          {[Award, Shield, Globe, BookOpen].map((Icon, i) => (
-            <div key={i}>
-              <Icon className="h-12 w-12 text-fg mx-auto mb-2" />
-              <div className="text-sm font-medium">
-                {["ISO 9001:2015", "GDPR", "Global", "Accredited"][i]}
-              </div>
-              <div className="text-xs text-muted-foreground">
-                {["Certified", "Compliant", "Recognition", "Courses"][i]}
-              </div>
             </div>
           ))}
         </div>

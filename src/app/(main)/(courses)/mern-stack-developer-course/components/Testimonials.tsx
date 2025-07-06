@@ -1,11 +1,22 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Star, Quote, Users, Award } from "lucide-react";
-import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import {
+  Star,
+  Quote,
+  Users,
+  Award,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 
 const Testimonials = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
   const testimonials = [
     {
       name: "Priya Sharma",
@@ -99,6 +110,58 @@ const Testimonials = () => {
     );
   };
 
+  // Auto-play functionality - always enabled
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % testimonials.length);
+    }, 5000); // Change slide every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [testimonials.length]);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide(
+      (prev) => (prev - 1 + testimonials.length) % testimonials.length
+    );
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
+  };
+
+  // Get visible testimonials based on screen size
+  const getVisibleCount = () => {
+    if (typeof window === "undefined") return 3;
+    return window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1;
+  };
+
+  const [visibleCount, setVisibleCount] = useState(3);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (typeof window !== "undefined") {
+        setVisibleCount(getVisibleCount());
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const getVisibleTestimonials = () => {
+    const result = [];
+    for (let i = 0; i < visibleCount; i++) {
+      const index = (currentSlide + i) % testimonials.length;
+      result.push(testimonials[index]);
+    }
+    return result;
+  };
+
   return (
     <section className="py-20 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-4">
@@ -167,87 +230,111 @@ const Testimonials = () => {
           </Card>
         </div>
 
-        {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <Card
-              key={index}
-              className="border-0 shadow-xl bg-white dark:bg-gray-800 hover:shadow-2xl transition-all duration-300 group"
-            >
-              <CardContent className="p-6">
-                {/* Quote Icon */}
-                <div className="mb-4">
-                  <Quote className="w-8 h-8 text-gray-300 dark:text-gray-600" />
-                </div>
-
-                {/* Rating */}
-                <div className="mb-4">{renderStars(testimonial.rating)}</div>
-
-                {/* Testimonial Text */}
-                <p className="text-gray-600 dark:text-gray-300 mb-6 italic">
-                  &quot;{testimonial.testimonial}&quot;
-                </p>
-
-                {/* Student Info */}
-                <div className="flex items-center space-x-4">
-                  <Avatar className="w-12 h-12 border-2 border-gray-200 dark:border-gray-700">
-                    <AvatarImage
-                      src={testimonial.image}
-                      alt={testimonial.name}
-                    />
-                    <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-500 text-white">
-                      {testimonial.name
-                        .split(" ")
-                        .map((n) => n[0])
-                        .join("")}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div className="flex-1">
-                    <h4 className="font-bold text-gray-900 dark:text-white">
-                      {testimonial.name}
-                    </h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
-                      {testimonial.role} at {testimonial.company}
-                    </p>
-                    <div className="flex items-center space-x-2 mt-1">
-                      <Badge className="bg-green-100 text-green-800 text-xs">
-                        {testimonial.package}
-                      </Badge>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        {/* Video Testimonials Section */}
-        <div className="mt-16 text-center">
-          <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
-            Watch Video Testimonials
-          </h3>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[1, 2, 3].map((video, index) => (
-              <Card
-                key={index}
-                className="border-0 shadow-xl bg-white dark:bg-gray-800 hover:shadow-2xl transition-all duration-300 group cursor-pointer"
+        {/* Testimonials Slider */}
+        <div className="relative">
+          {/* Navigation Buttons */}
+          <div className="flex justify-between items-center mb-8">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+              Student Testimonials
+            </h3>
+            <div className="flex space-x-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={prevSlide}
+                className="p-2 rounded-full"
               >
-                <CardContent className="p-0">
-                  <div className="relative aspect-video bg-gradient-to-br from-blue-500 to-purple-600 rounded-t-lg flex items-center justify-center">
-                    <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <div className="w-0 h-0 border-l-8 border-r-0 border-t-4 border-b-4 border-l-white border-t-transparent border-b-transparent ml-1"></div>
+                <ChevronLeft className="w-4 h-4" />
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={nextSlide}
+                className="p-2 rounded-full"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </Button>
+            </div>
+          </div>
+
+          {/* Slider Container */}
+          <div className="overflow-hidden">
+            <div
+              className={`grid gap-8 transition-all duration-500 ease-in-out ${
+                visibleCount === 1
+                  ? "grid-cols-1"
+                  : visibleCount === 2
+                  ? "md:grid-cols-2"
+                  : "md:grid-cols-2 lg:grid-cols-3"
+              }`}
+            >
+              {getVisibleTestimonials().map((testimonial, index) => (
+                <Card
+                  key={`${currentSlide}-${index}`}
+                  className="border-0 shadow-xl bg-white dark:bg-gray-800 hover:shadow-2xl transition-all duration-300 group"
+                >
+                  <CardContent className="p-6">
+                    {/* Quote Icon */}
+                    <div className="mb-4">
+                      <Quote className="w-8 h-8 text-gray-300 dark:text-gray-600" />
                     </div>
-                  </div>
-                  <div className="p-4">
-                    <h4 className="font-bold text-gray-900 dark:text-white mb-2">
-                      Success Story #{index + 1}
-                    </h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
-                      Watch how our student landed their dream job
+
+                    {/* Rating */}
+                    <div className="mb-4">
+                      {renderStars(testimonial.rating)}
+                    </div>
+
+                    {/* Testimonial Text */}
+                    <p className="text-gray-600 dark:text-gray-300 mb-6 italic line-clamp-4">
+                      &quot;{testimonial.testimonial}&quot;
                     </p>
-                  </div>
-                </CardContent>
-              </Card>
+
+                    {/* Student Info */}
+                    <div className="flex items-center space-x-4">
+                      <Avatar className="w-12 h-12 border-2 border-gray-200 dark:border-gray-700">
+                        <AvatarImage
+                          src={testimonial.image}
+                          alt={testimonial.name}
+                        />
+                        <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-500 text-white">
+                          {testimonial.name
+                            .split(" ")
+                            .map((n) => n[0])
+                            .join("")}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div className="flex-1">
+                        <h4 className="font-bold text-gray-900 dark:text-white">
+                          {testimonial.name}
+                        </h4>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                          {testimonial.role} at {testimonial.company}
+                        </p>
+                        <div className="flex items-center space-x-2 mt-1">
+                          <Badge className="bg-green-100 text-green-800 text-xs">
+                            {testimonial.package}
+                          </Badge>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+
+          {/* Dots Indicator */}
+          <div className="flex justify-center space-x-2 mt-8">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  index === currentSlide
+                    ? "bg-blue-600 w-8"
+                    : "bg-gray-300 dark:bg-gray-600 hover:bg-gray-400"
+                }`}
+              />
             ))}
           </div>
         </div>

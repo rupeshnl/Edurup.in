@@ -7,7 +7,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { HelpCircle, MessageSquare, Clock, Users } from "lucide-react";
+import { HelpCircle, MessageSquare, Mail, Clock, Users } from "lucide-react";
 
 const FAQ = () => {
   const faqs = [
@@ -268,15 +268,15 @@ const FAQ = () => {
           <p className="text-gray-600 dark:text-gray-300 mb-4">
             You can also reach us at:
           </p>
-          <div className="flex justify-center space-x-8 text-sm">
-            <div className="flex items-center space-x-2">
+          <div className="flex justify-center gap-2 items-center flex-col md:flex-row text-sm">
+            <div className="flex items-center gap-2 justify-center">
               <MessageSquare className="w-4 h-4 text-blue-600" />
               <span className="text-gray-700 dark:text-gray-300">
                 WhatsApp: +91 9849036024
               </span>
             </div>
-            <div className="flex items-center space-x-2">
-              <MessageSquare className="w-4 h-4 text-green-600" />
+            <div className="flex items-center gap-2 justify-center">
+              <Mail className="w-4 h-4 text-green-600" />
               <span className="text-gray-700 dark:text-gray-300">
                 Email: support@edurup.in
               </span>
