@@ -222,16 +222,17 @@ const PlacementSupport = () => {
           <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
             Our Hiring Partners
           </h3>
-          <div className="flex justify-center items-center space-x-12 mb-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center mb-8 max-w-4xl mx-auto">
             {hiringPartners.map((partner, index) => (
-              <Image
-                key={index}
-                src={partner.logo}
-                alt={partner.name}
-                width={120}
-                height={60}
-                className="h-12 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
-              />
+              <div key={index} className="flex items-center justify-center">
+                <Image
+                  src={partner.logo}
+                  alt={partner.name}
+                  width={120}
+                  height={60}
+                  className="h-8 md:h-12 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                />
+              </div>
             ))}
           </div>
 

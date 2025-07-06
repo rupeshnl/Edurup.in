@@ -167,7 +167,7 @@ const CourseCurriculum = () => {
         </div>
 
         {/* Curriculum Accordion */}
-        <div className="w-full flex justify-between items-start gap-3">
+        <div className="w-full flex flex-col items-center lg:flex-row justify-between md:items-start gap-3">
           <Card className="bg-white dark:bg-gray-900 border-0 shadow-xl flex-1">
             <CardContent className="p-8">
               <Accordion type="single" collapsible className="w-full">

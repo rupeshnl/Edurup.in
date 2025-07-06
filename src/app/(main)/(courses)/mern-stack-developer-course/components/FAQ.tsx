@@ -272,7 +272,7 @@ const FAQ = () => {
             <div className="flex items-center space-x-2">
               <MessageSquare className="w-4 h-4 text-blue-600" />
               <span className="text-gray-700 dark:text-gray-300">
-                WhatsApp: +91 9876543210
+                WhatsApp: +91 9849036024
               </span>
             </div>
             <div className="flex items-center space-x-2">

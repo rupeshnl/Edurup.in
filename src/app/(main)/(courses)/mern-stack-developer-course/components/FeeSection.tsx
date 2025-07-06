@@ -17,28 +17,6 @@ import {
 const FeeSection = () => {
   const pricingPlans = [
     {
-      name: "Basic Plan",
-      originalPrice: "₹99,999",
-      currentPrice: "₹49,999",
-      discount: "50% OFF",
-      popular: false,
-      features: [
-        "32 weeks comprehensive course",
-        "Live interactive classes",
-        "6+ real-world projects",
-        "Basic mentorship support",
-        "Community access",
-        "Course completion certificate",
-        "3 months placement support",
-        "Resume building assistance",
-      ],
-      paymentOptions: [
-        "One-time payment: ₹49,999",
-        "3 EMI: ₹17,999/month",
-        "6 EMI: ₹9,499/month",
-      ],
-    },
-    {
       name: "Pro Plan",
       originalPrice: "₹1,49,999",
       currentPrice: "₹74,999",
@@ -60,31 +38,6 @@ const FeeSection = () => {
         "One-time payment: ₹74,999",
         "3 EMI: ₹26,999/month",
         "6 EMI: ₹13,499/month",
-      ],
-    },
-    {
-      name: "Premium Plan",
-      originalPrice: "₹1,99,999",
-      currentPrice: "₹99,999",
-      discount: "50% OFF",
-      popular: false,
-      features: [
-        "Everything in Pro Plan",
-        "Guaranteed job placement",
-        "Premium mentor assignment",
-        "Capstone project guidance",
-        "Industry internship opportunity",
-        "Advanced certification",
-        "12 months placement support",
-        "Post-placement career guidance",
-        "Exclusive masterclasses",
-        "Priority doubt resolution",
-        "Career counseling sessions",
-      ],
-      paymentOptions: [
-        "One-time payment: ₹99,999",
-        "3 EMI: ₹35,999/month",
-        "6 EMI: ₹17,999/month",
       ],
     },
   ];
@@ -138,11 +91,11 @@ const FeeSection = () => {
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
+        <div className="flex items-center justify-center mb-16">
           {pricingPlans.map((plan, index) => (
             <Card
               key={index}
-              className={`relative border-0 shadow-xl hover:shadow-2xl transition-all duration-300 ${
+              className={`relative border-0 w-[350px] shadow-xl hover:shadow-2xl transition-all duration-300 ${
                 plan.popular
                   ? "bg-gradient-to-br from-blue-50 to-green-50 dark:from-blue-900/20 dark:to-green-800/20 scale-105"
                   : "bg-white dark:bg-gray-900"
@@ -177,7 +130,7 @@ const FeeSection = () => {
                 </div>
 
                 {/* Features */}
-                <div className="space-y-4 mb-8">
+                <div className="flex flex-col  justify-center space-y-4 mb-8">
                   {plan.features.map((feature, featureIndex) => (
                     <div
                       key={featureIndex}
