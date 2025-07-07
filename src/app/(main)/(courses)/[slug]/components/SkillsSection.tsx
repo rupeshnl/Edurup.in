@@ -8,7 +8,14 @@ interface SkillsSectionProps {
   course: Course;
 }
 
-const skillsTitleMap = {
+type SkillsTitleMapType = {
+  [key: string]: {
+    frontend: string;
+    backend: string;
+  };
+};
+
+const skillsTitleMap: SkillsTitleMapType = {
   "mern-stack-developer-course": {
     frontend: "Frontend Development",
     backend: "Backend Development",
@@ -24,55 +31,76 @@ const skillsTitleMap = {
 };
 
 const SkillsSection: React.FC<SkillsSectionProps> = ({ course }) => {
+  // Helper function to get skill icon
+  const getSkillIcon = (skill: string): string => {
+    const skillLower = skill.toLowerCase();
+
+    if (skillLower.includes("javascript") || skillLower.includes("js")) {
+      return "/Skills/js.png";
+    }
+    if (skillLower.includes("css") || skillLower.includes("sass")) {
+      return "/Skills/css.png";
+    }
+    if (skillLower.includes("html")) {
+      return "/Skills/html.png";
+    }
+    if (skillLower.includes("node")) {
+      return "/Skills/node.png";
+    }
+    return "/Skills/illustration.png";
+  };
+
+  // Define frontend and backend keywords
+  const frontendKeywords = [
+    "HTML5",
+    "CSS3",
+    "JavaScript",
+    "React",
+    "Redux",
+    "TypeScript",
+    "Vue.js",
+    "Angular",
+    "Sass",
+    "Bootstrap",
+    "Tailwind",
+  ];
+
+  const backendKeywords = [
+    "Node.js",
+    "Express",
+    "MongoDB",
+    "SQL",
+    "Python",
+    "Django",
+    "Flask",
+    "PostgreSQL",
+    "MySQL",
+    "APIs",
+    "GraphQL",
+    "REST",
+  ];
+
   // Split skills into frontend and backend based on course type
   const frontendSkills = course.skills
     .filter((skill) =>
-      [
-        "HTML5",
-        "CSS3",
-        "JavaScript",
-        "React",
-        "Redux",
-        "TypeScript",
-        "Vue.js",
-        "Angular",
-        "Sass",
-      ].some((frontend) => skill.toLowerCase().includes(frontend.toLowerCase()))
+      frontendKeywords.some((frontend) =>
+        skill.toLowerCase().includes(frontend.toLowerCase())
+      )
     )
     .map((skill) => ({
       name: skill,
-      icon:
-        skill.toLowerCase().includes("javascript") ||
-        skill.toLowerCase().includes("js")
-          ? "/Skills/js.png"
-          : skill.toLowerCase().includes("css") ||
-            skill.toLowerCase().includes("sass")
-          ? "/Skills/css.png"
-          : skill.toLowerCase().includes("html")
-          ? "/Skills/html.png"
-          : "/Skills/illustration.png",
+      icon: getSkillIcon(skill),
     }));
 
   const backendSkills = course.skills
     .filter((skill) =>
-      [
-        "Node.js",
-        "Express",
-        "MongoDB",
-        "SQL",
-        "Python",
-        "Django",
-        "Flask",
-        "PostgreSQL",
-        "MySQL",
-        "APIs",
-      ].some((backend) => skill.toLowerCase().includes(backend.toLowerCase()))
+      backendKeywords.some((backend) =>
+        skill.toLowerCase().includes(backend.toLowerCase())
+      )
     )
     .map((skill) => ({
       name: skill,
-      icon: skill.toLowerCase().includes("node")
-        ? "/Skills/node.png"
-        : "/Skills/illustration.png",
+      icon: getSkillIcon(skill),
     }));
 
   // If no clear frontend/backend split, use first half as frontend, second half as backend
@@ -84,15 +112,26 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ course }) => {
             .slice(0, Math.ceil(course.skills.length / 2))
             .map((skill) => ({
               name: skill,
-              icon: "/Skills/illustration.png",
+              icon: getSkillIcon(skill),
             })),
           backend: course.skills
             .slice(Math.ceil(course.skills.length / 2))
             .map((skill) => ({
               name: skill,
-              icon: "/Skills/illustration.png",
+              icon: getSkillIcon(skill),
             })),
         };
+
+  // Get titles for the course
+  const getTitles = () => {
+    const titles = skillsTitleMap[course.slug];
+    return {
+      frontend: titles?.frontend || "Frontend Development",
+      backend: titles?.backend || "Backend Development",
+    };
+  };
+
+  const titles = getTitles();
 
   return (
     <section className="py-20 bg-white dark:bg-gray-900">
@@ -122,27 +161,32 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ course }) => {
                 <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center mr-3">
                   <span className="text-white font-bold">F</span>
                 </div>
-                {skillsTitleMap[course.slug]?.frontend ||
-                  "Frontend Development"}
+                {titles.frontend}
               </h3>
               <div className="grid grid-cols-2 gap-4">
-                {skillsToShow.frontend.map((skill, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center space-x-3 p-3 bg-white dark:bg-gray-800 rounded-lg"
-                  >
-                    <Image
-                      src={skill.icon}
-                      alt={skill.name}
-                      width={24}
-                      height={24}
-                      className="w-6 h-6"
-                    />
-                    <span className="font-medium text-gray-900 dark:text-white">
-                      {skill.name}
-                    </span>
+                {skillsToShow.frontend.length > 0 ? (
+                  skillsToShow.frontend.map((skill, index) => (
+                    <div
+                      key={index}
+                      className="flex items-center space-x-3 p-3 bg-white dark:bg-gray-800 rounded-lg hover:shadow-md transition-shadow duration-300"
+                    >
+                      <Image
+                        src={skill.icon}
+                        alt={skill.name}
+                        width={24}
+                        height={24}
+                        className="w-6 h-6"
+                      />
+                      <span className="font-medium text-gray-900 dark:text-white">
+                        {skill.name}
+                      </span>
+                    </div>
+                  ))
+                ) : (
+                  <div className="col-span-2 text-center text-gray-500 dark:text-gray-400">
+                    No frontend skills available
                   </div>
-                ))}
+                )}
               </div>
             </CardContent>
           </Card>
@@ -154,54 +198,62 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ course }) => {
                 <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center mr-3">
                   <span className="text-white font-bold">B</span>
                 </div>
-                {skillsTitleMap[course.slug]?.backend || "Backend Development"}
+                {titles.backend}
               </h3>
               <div className="grid grid-cols-2 gap-4">
-                {skillsToShow.backend.map((skill, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center space-x-3 p-3 bg-white dark:bg-gray-800 rounded-lg"
-                  >
-                    <Image
-                      src={skill.icon}
-                      alt={skill.name}
-                      width={24}
-                      height={24}
-                      className="w-6 h-6"
-                    />
-                    <span className="font-medium text-gray-900 dark:text-white">
-                      {skill.name}
-                    </span>
+                {skillsToShow.backend.length > 0 ? (
+                  skillsToShow.backend.map((skill, index) => (
+                    <div
+                      key={index}
+                      className="flex items-center space-x-3 p-3 bg-white dark:bg-gray-800 rounded-lg hover:shadow-md transition-shadow duration-300"
+                    >
+                      <Image
+                        src={skill.icon}
+                        alt={skill.name}
+                        width={24}
+                        height={24}
+                        className="w-6 h-6"
+                      />
+                      <span className="font-medium text-gray-900 dark:text-white">
+                        {skill.name}
+                      </span>
+                    </div>
+                  ))
+                ) : (
+                  <div className="col-span-2 text-center text-gray-500 dark:text-gray-400">
+                    No backend skills available
                   </div>
-                ))}
+                )}
               </div>
             </CardContent>
           </Card>
         </div>
 
         {/* Tools & Development */}
-        <Card className="border-0 shadow-xl bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 mb-16">
-          <CardContent className="p-8">
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
-              <div className="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center mr-3">
-                <span className="text-white font-bold">T</span>
-              </div>
-              Tools & Development
-            </h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {course.tools.map((tool, index) => (
-                <div
-                  key={index}
-                  className="bg-white dark:bg-gray-800 rounded-lg p-4 text-center"
-                >
-                  <span className="font-medium text-gray-900 dark:text-white">
-                    {tool}
-                  </span>
+        {course.tools && course.tools.length > 0 && (
+          <Card className="border-0 shadow-xl bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 mb-16">
+            <CardContent className="p-8">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
+                <div className="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center mr-3">
+                  <span className="text-white font-bold">T</span>
                 </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+                Tools & Development
+              </h3>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {course.tools.map((tool, index) => (
+                  <div
+                    key={index}
+                    className="bg-white dark:bg-gray-800 rounded-lg p-4 text-center hover:shadow-md transition-shadow duration-300"
+                  >
+                    <span className="font-medium text-gray-900 dark:text-white">
+                      {tool}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
         {/* Soft Skills */}
         <Card className="border-0 shadow-xl bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20">
@@ -237,7 +289,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ course }) => {
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="text-3xl font-bold text-blue-600 mb-2">
-                {course.skills.length}+
+                {course.skills?.length || 0}+
               </div>
               <div className="text-gray-600 dark:text-gray-400">
                 Technologies
@@ -245,7 +297,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ course }) => {
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-green-600 mb-2">
-                {course.projects.length}+
+                {course.projects?.length || 0}+
               </div>
               <div className="text-gray-600 dark:text-gray-400">Projects</div>
             </div>
