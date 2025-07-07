@@ -500,11 +500,13 @@ export const courses: Course[] = [
     skills: [
       "Search Engine Optimization (SEO)",
       "Search Engine Marketing (SEM)",
+      "Techinical SEO",
       "Social Media Marketing",
       "Content Marketing",
       "Email Marketing",
       "Google Ads",
       "Facebook Ads",
+      "LinkedIn Ads",
       "Analytics & Reporting",
       "Conversion Optimization",
       "Marketing Automation",
@@ -646,12 +648,12 @@ export const courses: Course[] = [
       },
     ],
     fee: {
-      original: 40000,
-      discounted: 28000,
+      original: 120000,
+      discounted: 40000,
       currency: "INR",
       installments: [
-        { months: 2, amount: 14500 },
-        { months: 4, amount: 7200 },
+        { months: 2, amount: 20000 },
+        { months: 3, amount: 14000 },
       ],
     },
     jobRoles: [

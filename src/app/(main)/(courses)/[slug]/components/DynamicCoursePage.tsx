@@ -28,7 +28,7 @@ const DynamicCoursePage: React.FC<DynamicCoursePageProps> = ({ course }) => {
         <CompanyLogos course={course} />
 
         {/* Course Overview */}
-        <CourseOverview course={course} />
+        {/* <CourseOverview course={course} /> */}
 
         {/* Mentors */}
         <Mentors course={course} />
