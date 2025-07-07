@@ -138,7 +138,7 @@ const FeaturedCourses = () => {
           </TabsContent>
         </Tabs>
       </div>
-      <Separator />
+      {/* <Separator /> */}
     </>
   );
 };
