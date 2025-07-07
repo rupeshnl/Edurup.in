@@ -55,10 +55,10 @@ const facultyData = [
   {
     name: "Ahmad Hurayarah",
     designation: "Faculty",
-    image: "/mentor5.jpg",
-    subjects: ["Next & Node JS", "Full Stack Developer"],
-    socialMedia: null,
-    url: null,
+    image: "/mentor1.jpeg", // Fixed: Using local image instead of LinkedIn URL
+    subjects: ["Next & Node JS", "Full Stack Developer"],
+    socialMedia: "linkedin",
+    url: "https://linkedin.com/in/priyapatel",
   },
 ];
 

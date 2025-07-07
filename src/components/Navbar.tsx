@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
-import { ModeToggle } from "@/components/ui/mode-toggle";
+// import { ModeToggle } from "@/components/ui/mode-toggle";
 import { useScrollTop } from "@/hooks/use-scroll-top";
 import {
   NavigationMenu,
@@ -23,14 +23,12 @@ import {
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 
-import { useState } from "react";
 import { courses } from "@/data/courses";
 
-const SHEET_SIDES = ["top", "right", "bottom", "left"] as const;
+// const SHEET_SIDES = ["top", "right", "bottom", "left"] as const;
 
-type SheetSide = (typeof SHEET_SIDES)[number];
+// type SheetSide = (typeof SHEET_SIDES)[number];
 export const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const currentPath = usePathname();
   const scrolled = useScrollTop();
 
@@ -175,7 +173,7 @@ export const Navbar = () => {
                 Talk To A Counsellor ✆
               </Button>
             </Link>
-            <ModeToggle />
+            {/* <ModeToggle /> */}
           </div>
         </div>
       </div>

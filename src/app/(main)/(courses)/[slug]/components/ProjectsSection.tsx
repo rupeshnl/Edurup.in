@@ -171,9 +171,11 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ course }) => {
               </div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-purple-600 mb-2">50+</div>
+              <div className="text-3xl font-bold text-purple-600 mb-2">
+                100+
+              </div>
               <div className="text-gray-600 dark:text-gray-400">
-                Hours of Coding
+                Hours of particles
               </div>
             </div>
             <div className="text-center">

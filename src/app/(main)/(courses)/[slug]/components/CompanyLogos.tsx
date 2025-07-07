@@ -35,7 +35,7 @@ const CompanyLogos: React.FC<CompanyLogosProps> = ({ course }) => {
         </div>
 
         {/* Company Logos Marquee */}
-        <div className="relative overflow-hidden">
+        {/* <div className="relative overflow-hidden">
           <div className="flex animate-marquee">
             {[...companies, ...companies].map((company, index) => (
               <div
@@ -51,6 +51,52 @@ const CompanyLogos: React.FC<CompanyLogosProps> = ({ course }) => {
                 />
               </div>
             ))}
+          </div>
+        </div> */}
+
+        <div className="mb-1 sm:mb-10 w-full px-5 space-y-6 overflow-hidden">
+          {/* First scrolling line */}
+          <div className="relative fade-mask bg-transparent flex overflow-x-hidden w-full">
+            <div className="animate-marquee5 sm:animate-marquee whitespace-nowrap">
+              <Image
+                src="/maurquee1.jpg"
+                alt="Marquee Image"
+                width={3424}
+                height={64}
+                className="h-[1.9rem] sm:h-[4rem] object-cover"
+              />
+            </div>
+            <div className="absolute top-0 animate-marquee6 sm:animate-marquee2 whitespace-nowrap">
+              <Image
+                src="/maurquee1.jpg"
+                alt="Marquee Image"
+                width={3424}
+                height={64}
+                className="h-[1.9rem] sm:h-[4rem] object-cover"
+              />
+            </div>
+          </div>
+
+          {/* Second scrolling line */}
+          <div className="relative fade-mask  flex overflow-x-hidden w-full">
+            <div className="animate-marquee7 sm:animate-marquee3 whitespace-nowrap">
+              <Image
+                src="/maurquee2.jpg"
+                alt="Marquee Image"
+                width={3424}
+                height={64}
+                className="h-[1.9rem] sm:h-[4rem] object-cover"
+              />
+            </div>
+            <div className="absolute top-0 animate-marquee8 sm:animate-marquee4 whitespace-nowrap">
+              <Image
+                src="/maurquee2.jpg"
+                alt="Marquee Image"
+                width={3424}
+                height={64}
+                className="h-[1.9rem] sm:h-[4rem] object-cover"
+              />
+            </div>
           </div>
         </div>
 

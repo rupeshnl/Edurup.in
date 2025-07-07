@@ -58,7 +58,7 @@ const FeaturedCourses = () => {
   const renderCourseCard = (course: any) => (
     <Card
       key={course.title}
-      className="max-w-[350px] h-[430px] flex flex-col justify-between
+      className="max-w-[400px] h-[430px] flex flex-col justify-between
                  rounded-xl border border-gray-200 dark:border-gray-700
                  bg-gradient-to-tr from-white via-gray-50 to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900
                  shadow-xl hover:shadow-2xl transition-shadow duration-300

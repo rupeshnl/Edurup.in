@@ -8,6 +8,21 @@ interface SkillsSectionProps {
   course: Course;
 }
 
+const skillsTitleMap = {
+  "mern-stack-developer-course": {
+    frontend: "Frontend Development",
+    backend: "Backend Development",
+  },
+  "performance-marketing-course": {
+    frontend: "Advertising",
+    backend: "Strategy and Analytics",
+  },
+  "digital-marketing-course": {
+    frontend: "Organic Marketing",
+    backend: "Paid Marketing and Strategy",
+  },
+};
+
 const SkillsSection: React.FC<SkillsSectionProps> = ({ course }) => {
   // Split skills into frontend and backend based on course type
   const frontendSkills = course.skills
@@ -107,7 +122,8 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ course }) => {
                 <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center mr-3">
                   <span className="text-white font-bold">F</span>
                 </div>
-                Frontend Development
+                {skillsTitleMap[course.slug]?.frontend ||
+                  "Frontend Development"}
               </h3>
               <div className="grid grid-cols-2 gap-4">
                 {skillsToShow.frontend.map((skill, index) => (
@@ -138,7 +154,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ course }) => {
                 <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center mr-3">
                   <span className="text-white font-bold">B</span>
                 </div>
-                Backend Development
+                {skillsTitleMap[course.slug]?.backend || "Backend Development"}
               </h3>
               <div className="grid grid-cols-2 gap-4">
                 {skillsToShow.backend.map((skill, index) => (
