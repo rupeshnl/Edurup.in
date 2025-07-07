@@ -3,44 +3,28 @@
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { usePathname, useParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { ModeToggle } from "@/components/ui/mode-toggle";
 import { useScrollTop } from "@/hooks/use-scroll-top";
 import {
   NavigationMenu,
   NavigationMenuContent,
-  NavigationMenuIndicator,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
   DialogTrigger,
   DialogClose,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
 import { useState } from "react";
+import { courses } from "@/data/courses";
 
 const SHEET_SIDES = ["top", "right", "bottom", "left"] as const;
 
@@ -58,17 +42,10 @@ export const Navbar = () => {
     { label: "CONTACT US", href: "/contact-us" },
   ];
 
-  const courses = [
-    // {
-    //   label: "Full Stack Web Development",
-    //   href: "/full-stack-web-development",
-    // },
-    // { label: "Data Science", href: "/data-science" },
-    { label: "Digital Marketing", href: "/digital-marketing" },
-    { label: "Mern Development", href: "/mern-stack-developer-course" },
-    // { label: "Finance Analyst", href: "/finance-analyst" },
-    // { label: "Python", href: "/python" },
-  ];
+  const navCourses = courses.map((course) => ({
+    label: course.label,
+    href: `/${course.slug}`,
+  }));
   return (
     <>
       <div
@@ -122,7 +99,7 @@ export const Navbar = () => {
 
                 <NavigationMenuContent>
                   <NavigationMenuLink>
-                    {courses.map((course) => (
+                    {navCourses.map((course) => (
                       <Link
                         className={cn(
                           "flex text-left ml-2 w-[13.1rem] hover:text-fg py-2 transition-colors",
