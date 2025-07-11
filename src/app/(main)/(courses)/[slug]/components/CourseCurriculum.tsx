@@ -82,7 +82,7 @@ const CourseCurriculum: React.FC<CourseCurriculumProps> = ({ course }) => {
         {/* Curriculum Accordion */}
         <div className="w-full flex flex-col items-center lg:flex-row justify-between md:items-start gap-3">
           <Card className="bg-white dark:bg-gray-900 border-0 shadow-xl flex-1">
-            <CardContent className="p-8">
+            <CardContent className="p-6 md:p-8">
               <Accordion type="single" collapsible className="w-full">
                 {enhancedCurriculum.map((module, index) => (
                   <AccordionItem key={index} value={`module-${index}`}>
@@ -93,21 +93,27 @@ const CourseCurriculum: React.FC<CourseCurriculumProps> = ({ course }) => {
                             {index + 1}
                           </div>
                           <div>
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                            <h3 className="text-md md:text-lg font-semibold text-gray-900 dark:text-white">
                               {module.module}
                             </h3>
                             <div className="flex items-center space-x-4 text-sm text-gray-600 dark:text-gray-400 mt-1">
-                              <div className="flex items-center space-x-1">
+                              <div className="flex items-center justify-center gap-1">
                                 <Clock className="w-4 h-4" />
-                                <span>{module.duration}</span>
+                                <span className="text-xs">
+                                  {module.duration}
+                                </span>
                               </div>
-                              <div className="flex items-center space-x-1">
+                              <div className="flex items-center justify-center gap-1">
                                 <PlayCircle className="w-4 h-4" />
-                                <span>{module.lessons} lessons</span>
+                                <span className="text-xs">
+                                  {module.lessons} lessons
+                                </span>
                               </div>
-                              <div className="flex items-center space-x-1">
+                              <div className="flex items-center justify-center gap-1">
                                 <FileText className="w-4 h-4" />
-                                <span>{module.projects} projects</span>
+                                <span className="text-xs">
+                                  {module.projects} projects
+                                </span>
                               </div>
                             </div>
                           </div>
