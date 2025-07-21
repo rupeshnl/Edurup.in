@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Edurup - Empowering Your Future",
   description:
-    "Edurup offers top-notch courses and training programs to help you achieve your career goals. Join us to learn from industry experts and get job-ready skills in the most sought-after fields.",
+    "Upskill with Edurup — expert-designed programs, hands-on learning, and job placement support to launch your career faster.",
   keywords: [
     "Edurup",
     "Online Courses",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Edurup - Empowering Your Future",
     description:
-      "Join Edurup to learn from industry experts and gain the skills needed to excel in your career.",
+      "Upskill with Edurup — expert-designed programs, hands-on learning, and job placement support to launch your career faster.",
     url: "https://www.edurup.com",
     siteName: "Edurup",
     images: [
