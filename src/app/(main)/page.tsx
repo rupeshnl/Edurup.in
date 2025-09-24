@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <>
       <div className="min-h-full flex flex-col">
-        <h1>Hello, world</h1>
+        {/* <h1>Hello, world</h1> */}
         <Banner />
         <Company />
         <FeaturedCourses />
